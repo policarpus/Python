@@ -1,0 +1,27 @@
+cost = 0
+pr_gr_cost = 125.0
+def gr_cost(weight):
+  if weight<=2:
+    cost = 20+(1.5*weight)
+    return cost
+  elif weight<=6:
+    cost = 20+(3.0*weight)
+    return cost
+  elif weight<=10:
+    cost = 20+(4.0*weight)
+    return cost
+  else:
+    cost = (4.75*weight)
+    return cost
+def dr_cost(weight):
+  cost = (gr_cost(weight)-20)*3
+  return cost
+def best_cost(weight):
+  if gr_cost(weight)<dr_cost(weight) and gr_cost(weight)<pr_gr_cost:
+    cost= gr_cost(weight)
+    return "Ground shipping is better, it will cost " + str(cost) + "$"
+  elif dr_cost(weight)<pr_gr_cost:
+    cost=dr_cost(weight)
+    return "Drone shipping is better, it will cost " + str(cost) + "$"
+  else:
+    return "Premium ground shipping is better, it will cost " + str(pr_gr_cost) + "$"
